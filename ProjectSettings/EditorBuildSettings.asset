@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Chastan/Scenes/Menu Testing.unity
+    guid: 0078caffdd9a4e24695ce1f48af15618
   m_configObjects: {}
