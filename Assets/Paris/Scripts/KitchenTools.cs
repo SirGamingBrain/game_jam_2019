@@ -7,6 +7,7 @@ public class KitchenTools : MonoBehaviour
     public GameObject Cauldron;
     public GameObject Mixer;
     public GameObject Extractor;
+    public GameObject Oven;
 
     GameObject player;
 
@@ -17,6 +18,8 @@ public class KitchenTools : MonoBehaviour
     Dictionary<string, int> CauldronItems = new Dictionary<string, int>();
     Dictionary<string, int> MixerItems = new Dictionary<string, int>();
     Dictionary<string, int> ExtractorItems = new Dictionary<string, int>();
+    Dictionary<string, int> OvenItems = new Dictionary<string, int>();
+    
 
     string name;
     string ObjectsName;
@@ -29,7 +32,7 @@ public class KitchenTools : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Temp Player");
-        Itemvalues();
+       
        
     }
 
@@ -41,47 +44,24 @@ public class KitchenTools : MonoBehaviour
             baking();
             mixing();
             extracting();
+            cauldron();
+            Itemvalues();
             num = 0;
+            //if (OvenItems.TryGetValue("Pick up 1(Clone)", out itemValue)) 
+            //Debug.Log(OvenItems);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Interactable")
-        {
-            ObjectsName = other.gameObject.name;
-            name = player.GetComponent<Player_Movement>().selectionName;
-            if (name == "Cauldron")
-            {
-                //add the items to the list of cauldron items
-                // CauldronItems.Add(ObjectsName,itemValue);
-                CauldronItems.Add(ObjectsName, Itemvalues());
-                Debug.Log("You have added " + ObjectsName + " to the Cauldron!");
-            }
-            else if (name == "Mixer")
-            {
-                //add the items to the list of Mixer items
-                // MixerItems.Add(ObjectsName);
-                MixerItems.Add(ObjectsName, Itemvalues());
-                Debug.Log("You have added " + ObjectsName + " to the Mixer!");
-            }
-            else if (name == "Extractor")
-            {
-                //add the items to the list of Extractor items
-                //  ExtractorItems.Add(ObjectsName);
-                ExtractorItems.Add(ObjectsName, Itemvalues());
-                Debug.Log("You have added " + ObjectsName + " to the Extractor!");
-            }
-        }
-    }
+   
 
-    void baking()
+    void cauldron()
     {
         //cauldron
         foreach (KeyValuePair<string, int> ingredients in CauldronItems)
         {
             //CauldronItems
             num++;
+            
             Debug.Log("Cauldron Items" + "\n" + num + "." + " " + ingredients);
 
         }
@@ -95,6 +75,7 @@ public class KitchenTools : MonoBehaviour
         {
 
             num++;
+           
             Debug.Log("Extractor Items" + "\n" + num + "." + " " + ingredients);
 
         }
@@ -107,34 +88,101 @@ public class KitchenTools : MonoBehaviour
         {
 
             num++;
+           
             Debug.Log("Mixer Items" + "\n" + num + "." + " " + ingredients);
 
         }
     }
 
-    int Itemvalues()
+    void baking()
     {
+        //bake
+        foreach (KeyValuePair<string, int> ingredients in OvenItems)
+        {
+
+            num++;
+           
+            Debug.Log("Oven Items" + "\n" + num + "." + " " + ingredients);
+
+        }
+    }
+
+    void Itemvalues()
+    {
+        Debug.Log("Hey");
         if (ObjectsName == "Pick up 1 (Clone)")
         {
             itemValue = 1;
-            return itemValue;
+            
+          
         }
 
         if (ObjectsName == "Pick up 2 (Clone)")
         {
             itemValue = 2;
-            return itemValue;
+
         }
         if (ObjectsName == "Pick up 3 (Clone)")
         {
             itemValue = 3;
-            return itemValue;
+
         }
         if (ObjectsName == "Pick up 4 (Clone)")
         {
             itemValue = 4;
-            return itemValue;
+
         }
-        return itemValue;
+
+       
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Interactable")
+        {
+            ObjectsName = other.gameObject.name;
+           // Itemvalues();
+            name = player.GetComponent<Player_Movement>().selectionName;
+
+            if (name == "Cauldron")
+            {
+
+                //add the items to the list of cauldron items
+                // CauldronItems.Add(ObjectsName,itemValue);
+              
+                CauldronItems.Add(ObjectsName, itemValue);
+                Debug.Log("You have added " + ObjectsName + " to the Cauldron!");
+               
+            }
+            else if (name == "Mixer")
+            {
+
+                //add the items to the list of Mixer items
+                // MixerItems.Add(ObjectsName);
+                MixerItems.Add(ObjectsName, itemValue);
+               
+                Debug.Log("You have added " + ObjectsName + " to the Mixer!");
+            }
+            else if (name == "Extractor")
+            {
+
+                //add the items to the list of Extractor items
+                //  ExtractorItems.Add(ObjectsName);
+                ExtractorItems.Add(ObjectsName, itemValue);
+               
+                Debug.Log("You have added " + ObjectsName + " to the Extractor!");
+            }
+
+            else if (name == "Oven")
+            {
+
+                //add the items to the list of Extractor items
+                //  ExtractorItems.Add(ObjectsName);
+                OvenItems.Add(ObjectsName, itemValue);
+               
+                Debug.Log("You have added " + ObjectsName + " to the Oven!");
+            }
+        }
     }
 }
