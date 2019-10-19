@@ -9,7 +9,6 @@ public class MenuScript : MonoBehaviour
 {
     GameObject titlePage;
     GameObject settingsPage;
-    GameObject confirmationPage;
 
     Slider volumeBar;
 
@@ -18,9 +17,9 @@ public class MenuScript : MonoBehaviour
     TextMeshProUGUI volume;
     TextMeshProUGUI resolution;
     TextMeshProUGUI quality;
-    TextMeshProUGUI debugger;
 
-    Resolution[] resolutions;
+    readonly int[] widths = new int[5]{640, 1024, 1280, 1920, 2560};
+    readonly int[] heights = new int[5]{360, 576, 720, 1080, 1440};
 
     string[] names;
 
@@ -28,7 +27,7 @@ public class MenuScript : MonoBehaviour
     int maxQualityIndex = 0;
     int index = 0;
     int currentIndex = 0;
-    int maxIndex = 0;
+    readonly int maxIndex = 4;
 
     float timer = 0f;
 
@@ -41,16 +40,6 @@ public class MenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Resolution[] resolutions = Screen.resolutions;
-
-        foreach (Resolution resolution in resolutions)
-        {
-            index++;
-        }
-
-        maxIndex = index;
-        index = 0;
-
         names = QualitySettings.names;
 
         foreach (string qualityLevel in names)
@@ -63,12 +52,11 @@ public class MenuScript : MonoBehaviour
 
         titlePage = GameObject.Find("Title Page");
         settingsPage = GameObject.Find("Settings Page");
-        confirmationPage = GameObject.Find("Confirmation Page");
+        //confirmationPage = GameObject.Find("Confirmation Page");
 
         volume = GameObject.Find("Volume Value").GetComponent<TextMeshProUGUI>();
         resolution = GameObject.Find("Resolution").GetComponent<TextMeshProUGUI>();
         quality = GameObject.Find("Current Quality").GetComponent<TextMeshProUGUI>();
-        debugger = GameObject.Find("Debug Text").GetComponent<TextMeshProUGUI>();
 
         volumeBar = GameObject.Find("Volume Slider").GetComponent<Slider>();
         fullscreenToggle = GameObject.Find("Fullscreen").GetComponent<Toggle>();
@@ -107,51 +95,31 @@ public class MenuScript : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("Resolution"))
         {
-            foreach (Resolution Object in resolutions)
+            foreach (int Object in heights)
             {
                 index++;
 
-                if (Object.height == 720)
+                if (Object == 720)
                 {
-                    currentIndex = index - 1;
-                    Screen.fullScreen = false;
-
-                    if (!fullscreenToggle.isOn)
-                    {
-                        Screen.SetResolution(resolutions[currentIndex].width, resolutions[currentIndex].height, false);
-                    }
-                    else
-                    {
-                        Screen.SetResolution(resolutions[currentIndex].width, resolutions[currentIndex].height, true);
-                    }
-
+                    currentIndex = index;
+                    Screen.SetResolution(widths[currentIndex], heights[currentIndex], Screen.fullScreen);
                     PlayerPrefs.SetInt("Resolution", currentIndex);
-                    resolution.text = (resolutions[currentIndex].width.ToString() + " x " + resolutions[currentIndex].height.ToString());
+                    resolution.text = (widths[currentIndex].ToString() + " x " + heights[currentIndex].ToString());
                 }
             }
         }
         else
         {
             currentIndex = PlayerPrefs.GetInt("Resolution");
-            Screen.fullScreen = false;
-
-            if (!fullscreenToggle.isOn)
-            {
-                Screen.SetResolution(resolutions[currentIndex].width, resolutions[currentIndex].height, false);
-            }
-            else
-            {
-                Screen.SetResolution(resolutions[currentIndex].width, resolutions[currentIndex].height, true);
-            }
-
-            resolution.text = (resolutions[currentIndex].width.ToString() + " x " + resolutions[currentIndex].height.ToString());
+            Screen.SetResolution(widths[currentIndex], heights[currentIndex], Screen.fullScreen);
+            resolution.text = (widths[currentIndex].ToString() + " x " + heights[currentIndex].ToString());
         }
 
         if (!PlayerPrefs.HasKey("Quality"))
         {
             QualitySettings.SetQualityLevel(maxQualityIndex-1);
             PlayerPrefs.SetString("Quality", names[maxQualityIndex-1]);
-            quality.text = names[maxQualityIndex-1];
+            quality.text = names[maxQualityIndex-1].ToUpper();
         }
         else
         {
@@ -167,14 +135,14 @@ public class MenuScript : MonoBehaviour
 
             //Debug.Log(qualityIndex - 1);
             QualitySettings.SetQualityLevel(qualityIndex - 1);
-            quality.text = names[qualityIndex - 1];
+            quality.text = names[qualityIndex - 1].ToUpper();
         }
 
-        Debug.Log("Volume: " + PlayerPrefs.GetFloat("Volume") + ", Fullscreen: " +  PlayerPrefs.GetInt("Fullscreen") + ", Resolution: " + resolutions[currentIndex].width.ToString() + " x " + resolutions[currentIndex].height.ToString() + ", Quality: " + PlayerPrefs.GetString("Quality") + ".");
+        Debug.Log("Volume: " + PlayerPrefs.GetFloat("Volume") + ", Fullscreen: " +  PlayerPrefs.GetInt("Fullscreen") + ", Resolution: " + widths[currentIndex].ToString() + " x " + heights[currentIndex].ToString() + ", Quality: " + PlayerPrefs.GetString("Quality") + ".");
 
         titlePage.SetActive(true);
         settingsPage.SetActive(false);
-        confirmationPage.SetActive(false);
+        //confirmationPage.SetActive(false);
     }
 
     // Update is called once per frame
@@ -186,7 +154,7 @@ public class MenuScript : MonoBehaviour
 
         if (timer >= 5f)
         {
-            Debug.Log("Volume: " +  volumeBar.value + ", Fullscreen: " + PlayerPrefs.GetInt("Fullscreen") + ", Resolution: " + resolutions[currentIndex].width.ToString() + " x " + resolutions[currentIndex].height.ToString() + ", Quality: " + PlayerPrefs.GetString("Quality") + ".");
+            Debug.Log("Volume: " +  volumeBar.value + ", Fullscreen: " + PlayerPrefs.GetInt("Fullscreen") + ", Resolution: " + widths[currentIndex].ToString() + " x " + heights[currentIndex].ToString() + ", Quality: " + PlayerPrefs.GetString("Quality") + ".");
             timer = 0f;
         }
     }
@@ -245,42 +213,34 @@ public class MenuScript : MonoBehaviour
 
     public void ResIncrease()
     {
-        Resolution[] resolutions = Screen.resolutions;
-
-        if (currentIndex < maxIndex - 1)
+        if (currentIndex < maxIndex)
         {
             currentIndex++;
             PlayerPrefs.SetInt("Resolution", currentIndex);
-            resolution.text = (resolutions[currentIndex].width.ToString() + " x " + resolutions[currentIndex].height.ToString());
+            resolution.text = (widths[currentIndex].ToString() + " X " + heights[currentIndex].ToString());
         }
         else
         {
             currentIndex = 0;
             PlayerPrefs.SetInt("Resolution", currentIndex);
-            resolution.text = (resolutions[currentIndex].width.ToString() + " x " + resolutions[currentIndex].height.ToString());
+            resolution.text = (widths[currentIndex].ToString() + " X " + heights[currentIndex].ToString());
         }
-
-        debugger.text = "Clicked Up";
     }
 
     public void ResDecrease()
     {
-        Resolution[] resolutions = Screen.resolutions;
-
         if (currentIndex > 0)
         {
             currentIndex--;
             PlayerPrefs.SetInt("Resolution", currentIndex);
-            resolution.text = (resolutions[currentIndex].width.ToString() + " x " + resolutions[currentIndex].height.ToString());
+            resolution.text = (widths[currentIndex].ToString() + " X " + heights[currentIndex].ToString());
         }
         else
         {
-            currentIndex = maxIndex - 1;
+            currentIndex = maxIndex;
             PlayerPrefs.SetInt("Resolution", currentIndex);
-            resolution.text = (resolutions[currentIndex].width.ToString() + " x " + resolutions[currentIndex].height.ToString());
+            resolution.text = (widths[currentIndex].ToString() + " X " + heights[currentIndex].ToString());
         }
-
-        debugger.text = "Clicked Down";
     }
 
     public void QIncrease()
@@ -291,13 +251,13 @@ public class MenuScript : MonoBehaviour
         {
             qualityIndex++;
             PlayerPrefs.SetString("Quality", names[qualityIndex]);
-            quality.text = names[qualityIndex];
+            quality.text = names[qualityIndex].ToUpper();
         }
         else
         {
             qualityIndex = 0;
             PlayerPrefs.SetString("Quality", names[qualityIndex]);
-            quality.text = names[qualityIndex];
+            quality.text = names[qualityIndex].ToUpper();
         }
     }
 
@@ -309,31 +269,19 @@ public class MenuScript : MonoBehaviour
         {
             qualityIndex--;
             PlayerPrefs.SetString("Quality", names[qualityIndex]);
-            quality.text = names[qualityIndex];
+            quality.text = names[qualityIndex].ToUpper();
         }
         else
         {
             qualityIndex = maxQualityIndex - 1;
             PlayerPrefs.SetString("Quality", names[qualityIndex]);
-            quality.text = names[qualityIndex];
+            quality.text = names[qualityIndex].ToUpper();
         }
     }
 
     public void SaveAndExit()
     {
-        Resolution[] resolutions = Screen.resolutions;
-
-        Screen.fullScreen = false;
-
-        if (!fullscreenToggle.isOn)
-        {
-            Screen.SetResolution(resolutions[currentIndex].width, resolutions[currentIndex].height, false);
-        }
-        else
-        {
-            Screen.SetResolution(resolutions[currentIndex].width, resolutions[currentIndex].height, true);
-        }
-
+        Screen.SetResolution(widths[currentIndex], heights[currentIndex], Screen.fullScreen);
         PlayerPrefs.Save();
         titlePage.SetActive(true);
         settingsPage.SetActive(false);
