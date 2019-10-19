@@ -110,8 +110,9 @@ public class KitchenTools : MonoBehaviour
     void Itemvalues()
     {
         Debug.Log("Hey");
-        if (ObjectsName == "Pick up 1 (Clone)")
+        if (ObjectsName == "Pick up 1 (Clone)" && itemValue == 0)
         {
+
             itemValue = 1;
             
           
