@@ -19,9 +19,10 @@ public class Player_Movement : MonoBehaviour
 
    
     GameObject clone;
-   // string selectionName;
+    // string selectionName;
 
-   
+     //[SerializeField]
+     public string selectionName;
 
     float rotateY;
     float rotateX;
@@ -46,7 +47,7 @@ public class Player_Movement : MonoBehaviour
     {
         Movement();
         Interactions();
-        Detection();
+       
         
     }
 
@@ -81,6 +82,7 @@ public class Player_Movement : MonoBehaviour
         {
             Debug.Log("using left hand"); 
             leftHand.transform.Translate(Vector3.forward * 25 * Time.deltaTime);
+            Detection();
             StartCoroutine(Left());
 
         }
@@ -88,6 +90,7 @@ public class Player_Movement : MonoBehaviour
         {
             Debug.Log("using right hand");
             rightHand.transform.Translate(Vector3.forward * 25 * Time.deltaTime);
+            Detection();
             StartCoroutine(Right());
            
         }
@@ -152,17 +155,18 @@ public class Player_Movement : MonoBehaviour
 
     void Detection()
     {
-        var ray = FPV_Camera.ScreenPointToRay(Input.mousePosition + (Vector3.left * .5f));
-        var ray2 = FPV_Camera.ScreenPointToRay(Input.mousePosition + (Vector3.right * .5f));
+        var ray = FPV_Camera.ScreenPointToRay(Input.mousePosition + (Vector3.left * 100f));
+       // var ray2 = FPV_Camera.ScreenPointToRay(Input.mousePosition + (Vector3.right * 100f));
    
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
             var selection = hit.transform;
-            var selectionName = selection.gameObject.name;
+            selectionName = selection.gameObject.name;
             if (selectionName != null)
             {
                 Debug.Log(selectionName);
+                Debug.DrawRay(ray.origin, Vector3.forward, Color.yellow, 5f);
             }
         }
           
