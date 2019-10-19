@@ -18,6 +18,10 @@ public class MenuScript : MonoBehaviour
     TextMeshProUGUI resolution;
     TextMeshProUGUI quality;
 
+    AudioSource GUISounds;
+    AudioSource BackgroundMusic;
+    AudioSource Fire;
+
     readonly int[] widths = new int[5]{640, 1024, 1280, 1920, 2560};
     readonly int[] heights = new int[5]{360, 576, 720, 1080, 1440};
 
@@ -40,6 +44,10 @@ public class MenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GUISounds = GameObject.Find("GUI Sounds").GetComponent<AudioSource>();
+        BackgroundMusic = GetComponent<AudioSource>();
+        Fire = GameObject.Find("CampFire").GetComponent<AudioSource>();
+
         names = QualitySettings.names;
 
         foreach (string qualityLevel in names)
@@ -52,7 +60,6 @@ public class MenuScript : MonoBehaviour
 
         titlePage = GameObject.Find("Title Page");
         settingsPage = GameObject.Find("Settings Page");
-        //confirmationPage = GameObject.Find("Confirmation Page");
 
         volume = GameObject.Find("Volume Value").GetComponent<TextMeshProUGUI>();
         resolution = GameObject.Find("Resolution").GetComponent<TextMeshProUGUI>();
@@ -72,6 +79,10 @@ public class MenuScript : MonoBehaviour
             volumeBar.value = (PlayerPrefs.GetFloat("Volume"));
             volume.text = (PlayerPrefs.GetFloat("Volume").ToString());
         }
+
+        BackgroundMusic.volume = (PlayerPrefs.GetFloat("Volume") / 100);
+        GUISounds.volume = (PlayerPrefs.GetFloat("Volume") / 100);
+        Fire.volume = (PlayerPrefs.GetFloat("Volume") / 150);
 
         if (!PlayerPrefs.HasKey("Fullscreen"))
         {
@@ -195,6 +206,9 @@ public class MenuScript : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Volume", slider.value);
         volume.text = (PlayerPrefs.GetFloat("Volume").ToString());
+        GUISounds.volume = (PlayerPrefs.GetFloat("Volume") / 100);
+        BackgroundMusic.volume = (PlayerPrefs.GetFloat("Volume") / 100);
+        Fire.volume = (PlayerPrefs.GetFloat("Volume") / 150);
     }
 
     public void Fullscreen(Toggle toggle)
@@ -285,5 +299,10 @@ public class MenuScript : MonoBehaviour
         PlayerPrefs.Save();
         titlePage.SetActive(true);
         settingsPage.SetActive(false);
+    }
+
+    public void OnClick()
+    {
+        GUISounds.Play();
     }
 }
