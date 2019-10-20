@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     public float respawnTime = 5.0f;
     public float timer;
     int randomIndex;
-    
+
 
     private void Update()
     {
@@ -23,11 +23,10 @@ public class SpawnManager : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > respawnTime)
         {
-
-            //hardcoded position of spawn. Edit it as needed. 
-            //Instantiate(customerPrefabs, spawnPoint, Quaternion.identity);
+            //can be edited in scene
             GameObject instantiatedObject = Instantiate(customerPrefabs[randomIndex], spawnPoint, Quaternion.identity);
            timer = 0;
+            
         }
     }
 

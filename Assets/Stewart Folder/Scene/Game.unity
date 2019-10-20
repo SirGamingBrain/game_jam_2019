@@ -714,7 +714,7 @@ MonoBehaviour:
   - {fileID: 8136976654350125410, guid: f4ba6abeea67a4c64a781d7c6ef85012, type: 3}
   - {fileID: 4593327690292661986, guid: af8f77fa6de074e33aa569bf73f815b4, type: 3}
   spawnPoint: {x: 8, y: 0.4, z: -8}
-  respawnTime: 2
+  respawnTime: 10
   timer: 0
 --- !u!4 &1252306515
 Transform:
