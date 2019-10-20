@@ -16,9 +16,9 @@ public class KitchenTools : MonoBehaviour
     //List<string> ExtractorItems = new List<string>();
 
     Dictionary<string, int> CauldronItems = new Dictionary<string, int>();
-    Dictionary<string, int> MixerItems = new Dictionary<string, int>();
+    Dictionary<string, int> GrindingItems = new Dictionary<string, int>();
     Dictionary<string, int> ExtractorItems = new Dictionary<string, int>();
-    Dictionary<string, int> OvenItems = new Dictionary<string, int>();
+    Dictionary<string, int> FurnaceItems = new Dictionary<string, int>();
 
 
     string name;
@@ -94,12 +94,12 @@ public class KitchenTools : MonoBehaviour
     void mixing()
     {
         //mixer
-        foreach (KeyValuePair<string, int> ingredients in MixerItems)
+        foreach (KeyValuePair<string, int> ingredients in GrindingItems)
         {
 
             num++;
 
-            Debug.Log("Mixer Items" + "\n" + num + "." + " " + ingredients);
+            Debug.Log("Grinding Items" + "\n" + num + "." + " " + ingredients);
 
         }
     }
@@ -107,10 +107,10 @@ public class KitchenTools : MonoBehaviour
     void baking()
     {
         //bake
-        foreach (KeyValuePair<string, int> ingredients in OvenItems)
+        foreach (KeyValuePair<string, int> ingredients in FurnaceItems)
         {
             num++;
-            Debug.Log("Oven Items" + "\n" + num + "." + " " + ingredients);
+            Debug.Log("Furnace Items" + "\n" + num + "." + " " + ingredients);
         }
     }
 
@@ -150,10 +150,10 @@ public class KitchenTools : MonoBehaviour
                 Debug.Log("You have added " + ObjectsName + " to the Cauldron!");
 
             }
-            else if (name == "Mixer")
+            else if (name == "GrindingStation")
             {
-                MixerItems.Add(ObjectsName, itemValue);
-                Debug.Log("You have added " + ObjectsName + " to the Mixer!");
+                GrindingItems.Add(ObjectsName, itemValue);
+                Debug.Log("You have added " + ObjectsName + " to the Grinder!");
             }
             else if (name == "Extractor")
             {
@@ -161,11 +161,11 @@ public class KitchenTools : MonoBehaviour
                 Debug.Log("You have added " + ObjectsName + " to the Extractor!");
             }
 
-            else if (name == "Oven")
+            else if (name == "Furnace")
             {
 
-                OvenItems.Add(ObjectsName, itemValue);
-                Debug.Log("You have added " + ObjectsName + " to the Oven!");
+                FurnaceItems.Add(ObjectsName, itemValue);
+                Debug.Log("You have added " + ObjectsName + " to the Furnace!");
             }
         }
     }
@@ -196,10 +196,10 @@ public class KitchenTools : MonoBehaviour
             //Debug.Log(sum);
         }
 
-        else if (MixerItems.Count != 0)
+        else if (GrindingItems.Count != 0)
         {
             List<string> hey = new List<string>();
-            Dictionary<string, int>.KeyCollection mixes = CauldronItems.Keys;
+            Dictionary<string, int>.KeyCollection mixes = GrindingItems.Keys;
             foreach (string mixture in mixes)
             {
                 Debug.Log(mixture);
@@ -219,7 +219,7 @@ public class KitchenTools : MonoBehaviour
         else if (ExtractorItems.Count != 0)
         {
             List<string> hey = new List<string>();
-            Dictionary<string, int>.KeyCollection mixes = CauldronItems.Keys;
+            Dictionary<string, int>.KeyCollection mixes = ExtractorItems.Keys;
             foreach (string mixture in mixes)
             {
                 Debug.Log(mixture);
@@ -235,10 +235,10 @@ public class KitchenTools : MonoBehaviour
 
             
         }
-        else if (OvenItems.Count != 0)
+        else if (FurnaceItems.Count != 0)
         {
             List<string> hey = new List<string>();
-            Dictionary<string, int>.KeyCollection mixes = CauldronItems.Keys;
+            Dictionary<string, int>.KeyCollection mixes = FurnaceItems.Keys;
             foreach (string mixture in mixes)
             {
                 Debug.Log(mixture);
@@ -262,50 +262,139 @@ public class KitchenTools : MonoBehaviour
             Debug.Log("we empty dog");
         }
 
-        if (CauldronItems.ContainsKey("Pick up 1(Clone)") && CauldronItems.ContainsKey("Pick up 2(Clone)") && CauldronItems.ContainsKey("Pick up 3(Clone)"))
+        if (CauldronItems.ContainsKey("Rage of the Dragon(Clone)") && CauldronItems.ContainsKey("Power Stone(Clone)") && CauldronItems.ContainsKey("Eternal Flame(Clone)"))
         {
-            Debug.Log("Music");
+            Debug.Log("Strength Potion");
             CauldronItems.Remove(ObjectsName);
 
         }
 
-        if (CauldronItems.ContainsKey("Pick up 1(Clone)") && CauldronItems.ContainsKey("Pick up 2(Clone)") && CauldronItems.ContainsKey("Pick up 4(Clone)"))
+        if (CauldronItems.ContainsKey("Power Stone(Clone)") && CauldronItems.ContainsKey("Eternal Flame(Clone)") && CauldronItems.ContainsKey("Blackeye Sugar(Clone)"))
         {
-            Debug.Log("Eyes");
+            Debug.Log("Manna Potion");
             CauldronItems.Remove(ObjectsName);
         }
-        if (CauldronItems.ContainsKey("Pick up 1(Clone)") && CauldronItems.ContainsKey("Pick up 3(Clone)") && CauldronItems.ContainsKey("Pick up 4(Clone)"))
+        if (CauldronItems.ContainsKey("Light Spirit(Clone)") && CauldronItems.ContainsKey("Blood Rose Sugar(Clone)") && CauldronItems.ContainsKey("Smooth Horn(Clone)"))
         {
-            Debug.Log("Tails");
+            Debug.Log("Healing Potion");
             CauldronItems.Remove(ObjectsName);
         }
-        if (CauldronItems.ContainsKey("Pick up 2(Clone)") && CauldronItems.ContainsKey("Pick up 3(Clone)") && CauldronItems.ContainsKey("Pick up 4(Clone)"))
+        if (CauldronItems.ContainsKey("Empty Vessel(Clone)") && CauldronItems.ContainsKey("Eternal Flame(Clone)") && CauldronItems.ContainsKey("Blood Rose Petals(Clone)"))
         {
-            Debug.Log("Coke");
+            Debug.Log("Revive Potion");
+            CauldronItems.Remove(ObjectsName);
+        }
+        if (CauldronItems.ContainsKey("Venom(Clone)") && CauldronItems.ContainsKey("Dark Spirit(Clone)") && CauldronItems.ContainsKey("Draconic Dust(Clone)"))
+        {
+            Debug.Log("Poison Potion");
+            CauldronItems.Remove(ObjectsName);
+        }
+        if (CauldronItems.ContainsKey("Moon Sugar(Clone)") && CauldronItems.ContainsKey("Blood Rose Sugar(Clone)") && CauldronItems.ContainsKey("Blackeye Sugar(Clone)"))
+        {
+            Debug.Log("Speed Potion");
+            CauldronItems.Remove(ObjectsName);
+        }
+        if (CauldronItems.ContainsKey("Moon Petals(Clone)") && CauldronItems.ContainsKey("Cyclops Tears(Clone)") && CauldronItems.ContainsKey("Rage of the Dragon(Clone)"))
+        {
+            Debug.Log("Stamina Potion");
+            CauldronItems.Remove(ObjectsName);
+        }
+        if (CauldronItems.ContainsKey("Iris Extract(Clone)") && CauldronItems.ContainsKey("Crystal Eye(Clone)") && CauldronItems.ContainsKey("Mini Star(Clone)"))
+        {
+            Debug.Log("Perception Potion");
             CauldronItems.Remove(ObjectsName);
         }
 
-        if (MixerItems.ContainsKey("Pick up 1(Clone)"))
+        if (CauldronItems.ContainsKey("Magic Powder(Clone)") && CauldronItems.ContainsKey("Draconic Dust(Clone)") && CauldronItems.ContainsKey("Gold Seeds(Clone)"))
         {
-            Debug.Log("mixed pick up 1");
-            MixerItems.Remove(ObjectsName);
+            Debug.Log("Exp Potion");
+            CauldronItems.Remove(ObjectsName);
         }
-        if (MixerItems.ContainsKey("Pick up 2(Clone)"))
+        if (CauldronItems.ContainsKey("Moon Sugar(Clone)") && CauldronItems.ContainsKey("Sun Petals(Clone)") && CauldronItems.ContainsKey("Nova Core(Clone)"))
         {
-            Debug.Log("mixed pick up 2");
-            MixerItems.Remove(ObjectsName);
+            Debug.Log("Jumping Potion");
+            CauldronItems.Remove(ObjectsName);
         }
-        if (MixerItems.ContainsKey("Pick up 3(Clone)"))
+        if (CauldronItems.ContainsKey("Goo(Clone)") && CauldronItems.ContainsKey("Scales(Clone)") && CauldronItems.ContainsKey("Cyclops Tears(Clone)"))
         {
-            Debug.Log("mixed pick up 3");
-            MixerItems.Remove(ObjectsName);
+            Debug.Log("Underwater Breathing Potion");
+            CauldronItems.Remove(ObjectsName);
         }
-        if (MixerItems.ContainsKey("Pick up 4(Clone)"))
+        if (CauldronItems.ContainsKey("Blood Rose Petals(Clone)") && CauldronItems.ContainsKey("Magic Powder(Clone)") && CauldronItems.ContainsKey("Fungus(Clone)"))
         {
-            Debug.Log("mixed pick up 4");
-            MixerItems.Remove(ObjectsName);
+            Debug.Log("Potion of Life");
+            CauldronItems.Remove(ObjectsName);
+        }
+        if (CauldronItems.ContainsKey("Blood Seeds(Clone)") && CauldronItems.ContainsKey("Magic Powder(Clone)") && CauldronItems.ContainsKey("Rage of the Dragon(Clone)"))
+        {
+            Debug.Log("Seeds of Necromancy");
+            CauldronItems.Remove(ObjectsName);
+        }
+        if (CauldronItems.ContainsKey("Smooth Horn(Clone)") && CauldronItems.ContainsKey("Venom(Clone)") && CauldronItems.ContainsKey("Nova Core(Clone)"))
+        {
+            Debug.Log("Death Potion");
+            CauldronItems.Remove(ObjectsName);
+        }
+        if (CauldronItems.ContainsKey("Mini Star(Clone)") && CauldronItems.ContainsKey("Moon Sugar(Clone)") && CauldronItems.ContainsKey("Magic Powder(Clone)"))
+        {
+            Debug.Log("Swimming Speed Potion");
+            CauldronItems.Remove(ObjectsName);
         }
 
+        //Grinding Section
+        if (GrindingItems.ContainsKey("Dragon Horn(Clone)"))
+        {
+            Debug.Log("Smooth Horn");
+            GrindingItems.Remove(ObjectsName);
+        }
+        if (GrindingItems.ContainsKey("Cyclops Eye(Clone)"))
+        {
+            Debug.Log("Iris Extract");
+            GrindingItems.Remove(ObjectsName);
+        }
+        if (GrindingItems.ContainsKey("Undead Soul(Clone)"))
+        {
+            Debug.Log("Empty Vessel");
+            GrindingItems.Remove(ObjectsName);
+        }
+        if (GrindingItems.ContainsKey("Blood Rose(Clone)"))
+        {
+            Debug.Log("Blood Rose Petals");
+            GrindingItems.Remove(ObjectsName);
+        }
+        if (GrindingItems.ContainsKey("Blackeyed Gold(Clone)"))
+        {
+            Debug.Log("Sun Petals");
+            GrindingItems.Remove(ObjectsName);
+        }
+        if (GrindingItems.ContainsKey("Blooming Moon(Clone)"))
+        {
+            Debug.Log("Moon Petals");
+            GrindingItems.Remove(ObjectsName);
+        }
+        if (GrindingItems.ContainsKey("Dark Matter(Clone)"))
+        {
+            Debug.Log("You can not Grind this item!");
+            GrindingItems.Remove(ObjectsName);
+        }
+        if (GrindingItems.ContainsKey("Volcanic Ore(Clone)"))
+        {
+            Debug.Log("You can not Grind this item");
+            GrindingItems.Remove(ObjectsName);
+        }
+        if (GrindingItems.ContainsKey("Snake(Clone)"))
+        {
+            Debug.Log("Scales");
+            GrindingItems.Remove(ObjectsName);
+        }
+        if (GrindingItems.ContainsKey("Magic Mushrooms(Clone)"))
+        {
+            Debug.Log("Magic Powder");
+            GrindingItems.Remove(ObjectsName);
+        }
+        //Grinding Ends
+
+        //Extraction Section
         if (ExtractorItems.ContainsKey("Pick up 1(Clone)"))
         {
             Debug.Log("Extracted pick up 1");
@@ -326,27 +415,31 @@ public class KitchenTools : MonoBehaviour
             Debug.Log("Extracted pick up 4");
             ExtractorItems.Remove(ObjectsName);
         }
+        //Extraction Ends
 
-        if (OvenItems.ContainsKey("Pick up 1(Clone)"))
+
+        //Baking Section
+        if (FurnaceItems.ContainsKey("Pick up 1(Clone)"))
         {
             Debug.Log("Baked pick up 1");
-            OvenItems.Remove(ObjectsName);
+            FurnaceItems.Remove(ObjectsName);
         }
-        if (OvenItems.ContainsKey("Pick up 2(Clone)"))
+        if (FurnaceItems.ContainsKey("Pick up 2(Clone)"))
         {
             Debug.Log("Baked pick up 2");
-            OvenItems.Remove(ObjectsName);
+            FurnaceItems.Remove(ObjectsName);
         }
-        if (OvenItems.ContainsKey("Pick up 3(Clone)"))
+        if (FurnaceItems.ContainsKey("Pick up 3(Clone)"))
         {
             Debug.Log("Baked pick up 3");
-            OvenItems.Remove(ObjectsName);
+            FurnaceItems.Remove(ObjectsName);
         }
-        if (OvenItems.ContainsKey("Pick up 4(Clone)"))
+        if (FurnaceItems.ContainsKey("Pick up 4(Clone)"))
         {
             Debug.Log("Baked pick up 4");
-            OvenItems.Remove(ObjectsName);
+            FurnaceItems.Remove(ObjectsName);
         }
+        //Baking Ends
 
     }
 

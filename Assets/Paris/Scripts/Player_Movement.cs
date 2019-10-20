@@ -113,7 +113,7 @@ public class Player_Movement : MonoBehaviour
         {
             dist = Vector3.Distance(this.transform.position, interactions[i].transform.position);
             //Debug.Log(dist);
-            if (dist <= 5f)
+            if (dist <= 1.5f)
             {
 
                 if (Input.GetKeyDown(KeyCode.E))
