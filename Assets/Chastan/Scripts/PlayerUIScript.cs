@@ -186,9 +186,9 @@ public class PlayerUIScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L) )
+        if (Input.GetKeyDown(KeyCode.L))
         {
             Settings();
             Cursor.lockState = CursorLockMode.None;

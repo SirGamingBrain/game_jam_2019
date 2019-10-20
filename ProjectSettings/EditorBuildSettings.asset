@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Levels/Menu.unity
     guid: 38affb858c9277244ae09515bfd29380
   - enabled: 1
-    path: Assets/Levels/Singleplayer.unity
-    guid: 6063a2273affff04f8ad23d5d4baf941
-  - enabled: 1
     path: Assets/Levels/Multiplayer.unity
     guid: 01e183ad807258d43b6b0932c3e6cdfd
   m_configObjects: {}

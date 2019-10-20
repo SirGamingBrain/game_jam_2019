@@ -20,6 +20,7 @@ public class MenuScript : MonoBehaviour
     TextMeshProUGUI volume;
     TextMeshProUGUI resolution;
     TextMeshProUGUI quality;
+    TextMeshProUGUI highscore;
 
     AudioSource GUISounds;
     AudioSource BackgroundMusic;
@@ -47,7 +48,7 @@ public class MenuScript : MonoBehaviour
        
         GUISounds = GameObject.Find("GUI Sounds").GetComponent<AudioSource>();
         BackgroundMusic = GetComponent<AudioSource>();
-        Fire = GameObject.Find("CampFire").GetComponent<AudioSource>();
+        //Fire = GameObject.Find("CampFire").GetComponent<AudioSource>();
 
         names = QualitySettings.names;
 
@@ -68,9 +69,20 @@ public class MenuScript : MonoBehaviour
         volume = GameObject.Find("Volume Value").GetComponent<TextMeshProUGUI>();
         resolution = GameObject.Find("Resolution").GetComponent<TextMeshProUGUI>();
         quality = GameObject.Find("Current Quality").GetComponent<TextMeshProUGUI>();
+        highscore = GameObject.Find("Highscore").GetComponent<TextMeshProUGUI>();
 
         volumeBar = GameObject.Find("Volume Slider").GetComponent<Slider>();
         fullscreenToggle = GameObject.Find("Fullscreen").GetComponent<Toggle>();
+
+        if (PlayerPrefs.HasKey("Highscore"))
+        {
+            highscore.text = ("HIGHSCORE: " + PlayerPrefs.GetInt("Highscore") + " SECONDS");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Highscore", 0);
+            highscore.text = "HIGHSCORE: 0 SECONDS";
+        }
 
         if (!PlayerPrefs.HasKey("Volume"))
         {
@@ -84,9 +96,9 @@ public class MenuScript : MonoBehaviour
             volume.text = (PlayerPrefs.GetFloat("Volume").ToString());
         }
 
-        BackgroundMusic.volume = (PlayerPrefs.GetFloat("Volume") / 100);
+        BackgroundMusic.volume = (PlayerPrefs.GetFloat("Volume") / 200f);
         GUISounds.volume = (PlayerPrefs.GetFloat("Volume") / 100);
-        Fire.volume = (PlayerPrefs.GetFloat("Volume") / 150);
+        //Fire.volume = (PlayerPrefs.GetFloat("Volume") / 175f);
 
         if (!PlayerPrefs.HasKey("Fullscreen"))
         {
@@ -177,7 +189,7 @@ public class MenuScript : MonoBehaviour
             {
                 if (source.volume > 0f)
                 {
-                    source.volume -= Time.deltaTime;
+                    source.volume -= (source.volume * Time.deltaTime);
                 }
                 else
                 {
@@ -188,7 +200,7 @@ public class MenuScript : MonoBehaviour
             if (fadeTimer <= 0f)
             {
                 fadeAlpha.alpha = 1f;
-                SceneManager.LoadSceneAsync(scene);
+                SceneManager.LoadScene(scene);
             }
         }
     }
@@ -196,11 +208,11 @@ public class MenuScript : MonoBehaviour
     public void StartOnePlayer()
     {
         fade.SetActive(true);
-        scene = "Singleplayer";
+        scene = "Multiplayer";
         loadScene = true;
     }
 
-    public void StartTwoPlayer()
+    /*public void StartTwoPlayer()
     {
         fade.SetActive(true);
         scene = "Multiplayer";
@@ -219,7 +231,7 @@ public class MenuScript : MonoBehaviour
         fade.SetActive(true);
         scene = "Multiplayer";
         loadScene = true;
-    }
+    }*/
 
     public void Settings()
     {
@@ -237,9 +249,9 @@ public class MenuScript : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Volume", slider.value);
         volume.text = (PlayerPrefs.GetFloat("Volume").ToString());
-        GUISounds.volume = (PlayerPrefs.GetFloat("Volume") / 100);
-        BackgroundMusic.volume = (PlayerPrefs.GetFloat("Volume") / 100);
-        Fire.volume = (PlayerPrefs.GetFloat("Volume") / 150);
+        GUISounds.volume = (PlayerPrefs.GetFloat("Volume") / 100f);
+        BackgroundMusic.volume = (PlayerPrefs.GetFloat("Volume") / 200f);
+        //Fire.volume = (PlayerPrefs.GetFloat("Volume") / 150);
     }
 
     public void Fullscreen(Toggle toggle)
