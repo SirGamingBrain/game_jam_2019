@@ -439,8 +439,8 @@ public class KitchenTools : MonoBehaviour
                 GrindingItems.Remove(ObjectsName);
                 GrindedItems.Add("Draconic Dust");
                 timer = 0;
-               
-              
+
+            }
                 if (GrindedItems.Count == 1)
                 {
                     Debug.Log("Hey");
@@ -459,12 +459,10 @@ public class KitchenTools : MonoBehaviour
                       
                     }
 
-                    
-
 
                 }
 
-            }
+            GrindedItems.Remove("Draconic Dust");
            
         }
         if (GrindingItems.ContainsKey("Cyclops Eye(Clone)"))
@@ -477,7 +475,28 @@ public class KitchenTools : MonoBehaviour
                 GrindedItems.Add("Cyclops Tears");
                 timer = 0;
             }
-            
+            if (GrindedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in GrindedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, GrinderSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+
+            GrindedItems.Remove("Cyclops Tears");
+
         }
         if (GrindingItems.ContainsKey("Undead Soul(Clone)"))
         {
@@ -489,7 +508,28 @@ public class KitchenTools : MonoBehaviour
                 GrindedItems.Add("Empty Vessel");
                 timer = 0;
             }
-           
+
+            if (GrindedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in GrindedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, GrinderSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+                GrindedItems.Remove("Empty Vessels");
+            }
+
         }
         if (GrindingItems.ContainsKey("Blood Rose(Clone)"))
         {
@@ -501,7 +541,28 @@ public class KitchenTools : MonoBehaviour
                 GrindedItems.Add("Blood Rose Petals");
                 timer = 0;
             }
-           
+
+            if (GrindedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in GrindedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, GrinderSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            GrindedItems.Remove("Blood Rose Petals");
+
         }
         if (GrindingItems.ContainsKey("Blackeyed Gold(Clone)"))
         {
@@ -513,7 +574,28 @@ public class KitchenTools : MonoBehaviour
                 GrindedItems.Add("Sun Petals");
                 timer = 0;
             }
-           
+
+            if (GrindedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in GrindedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, GrinderSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            GrindedItems.Remove("Sun Petals");
+
         }
         if (GrindingItems.ContainsKey("Blooming Moon(Clone)"))
         {
@@ -525,7 +607,28 @@ public class KitchenTools : MonoBehaviour
                 GrindedItems.Add("Moon Petals");
                 timer = 0;
             }
-           
+
+            if (GrindedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in GrindedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, GrinderSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            GrindedItems.Remove("Moon Petals");
+
         }
         if (GrindingItems.ContainsKey("Dark Matter(Clone)"))
         {
@@ -548,9 +651,30 @@ public class KitchenTools : MonoBehaviour
                 GrindedItems.Add("Scales");
                 timer = 0;
             }
-           
+
+            if (GrindedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in GrindedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, GrinderSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            GrindedItems.Remove("Scales");
+
         }
-        if (GrindingItems.ContainsKey("Magic Mushrooms(Clone)"))
+        if (GrindingItems.ContainsKey("Magic Mushroom(Clone)"))
         {
             timer += Time.deltaTime;
             if (timer >= 5f)
@@ -560,8 +684,28 @@ public class KitchenTools : MonoBehaviour
                 GrindedItems.Add("Magic Powder");
                 timer = 0;
             }
-           
-           
+
+            if (GrindedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in GrindedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, GrinderSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            GrindedItems.Remove("Magic Powder");
+
         }
         //Grinding Ends
 
@@ -576,7 +720,27 @@ public class KitchenTools : MonoBehaviour
                 ExtractedItems.Add("Smooth Horn");
                 timer = 0;
             }
-           
+            if (ExtractedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in ExtractedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, ExtractorSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            ExtractedItems.Remove("Smooth Horn");
+
         }
         if (ExtractorItems.ContainsKey("Cyclops Eye(Clone)"))
         {
@@ -588,7 +752,27 @@ public class KitchenTools : MonoBehaviour
                 ExtractedItems.Add("Iris Extract");
                 timer = 0;
             }
-           
+            if (ExtractedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in ExtractedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, ExtractorSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            ExtractedItems.Remove("Iris Extract");
+
         }
         if (ExtractorItems.ContainsKey("Undead Soul(Clone)"))
         {
@@ -600,7 +784,27 @@ public class KitchenTools : MonoBehaviour
                 ExtractedItems.Add("Light Spirit");
                 timer = 0;
             }
-         
+            if (ExtractedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in ExtractedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, ExtractorSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            ExtractedItems.Remove("Light Spirit");
+
         }
         if (ExtractorItems.ContainsKey("Blood Rose(Clone)"))
         {
@@ -624,7 +828,27 @@ public class KitchenTools : MonoBehaviour
                 ExtractedItems.Add("Blood Seeds");
                 timer = 0;
             }
-           
+            if (ExtractedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in ExtractedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, ExtractorSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            ExtractedItems.Remove("Blood Seeds");
+
         }
         if (ExtractorItems.ContainsKey("Blooming Moon(Clone)"))
         {
@@ -636,7 +860,27 @@ public class KitchenTools : MonoBehaviour
                 ExtractedItems.Add("Moon Seeds");
                 timer = 0;
             }
-           
+            if (ExtractedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in ExtractedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, ExtractorSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            ExtractedItems.Remove("Moon Seeds");
+
         }
         if (ExtractorItems.ContainsKey("Dark Matter(Clone)"))
         {
@@ -648,7 +892,28 @@ public class KitchenTools : MonoBehaviour
                 ExtractedItems.Add("Nova Core");
                 timer = 0;
             }
-           
+
+            if (ExtractedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in ExtractedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, ExtractorSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            ExtractedItems.Remove("Nova Core");
+
         }
         if (ExtractorItems.ContainsKey("Volcanic Core(Clone)"))
         {
@@ -660,7 +925,26 @@ public class KitchenTools : MonoBehaviour
                 ExtractedItems.Add("External Flame");
                 timer = 0;
             }
-           
+            if (ExtractedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in ExtractedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, ExtractorSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            ExtractedItems.Remove("External Flame");
         }
         if (ExtractorItems.ContainsKey("Snake(Clone)"))
         {
@@ -672,7 +956,26 @@ public class KitchenTools : MonoBehaviour
                 ExtractedItems.Add("Venom");
                 timer = 0;
             }
-           
+            if (ExtractedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in ExtractedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, ExtractorSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            ExtractedItems.Remove("Venom");
         }
         if (ExtractorItems.ContainsKey("Magic Mushrooms(Clone)"))
         {
@@ -684,7 +987,26 @@ public class KitchenTools : MonoBehaviour
                 ExtractedItems.Add("Fungus");
                 timer = 0;
             }
-           
+            if (ExtractedItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in ExtractedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, ExtractorSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            ExtractedItems.Remove("Fungus");
         }
         //Extraction Ends
 
@@ -700,7 +1022,27 @@ public class KitchenTools : MonoBehaviour
                 BakedItems.Add("Rage of the Dragon");
                 timer = 0;
             }
-           
+            if (FurnaceItems.Count == 1)
+            {
+                Debug.Log("Hey");
+                foreach (GameObject t in Proccessed)
+                {
+
+                    foreach (string j in BakedItems)
+                    {
+
+                        if (t.name == j)
+                        {
+                            clone2 = Instantiate(t.gameObject, OvenSpawn.transform.position, t.transform.rotation);
+                            Debug.Log("Im here");
+                        }
+                    }
+
+                }
+
+            }
+            BakedItems.Remove("Rage of the Dragon");
+
         }
         if (FurnaceItems.ContainsKey("Cyclops Eye(Clone)"))
         {

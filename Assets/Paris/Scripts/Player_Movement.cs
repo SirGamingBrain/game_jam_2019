@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Player_Movement : MonoBehaviour
 {
@@ -144,21 +145,11 @@ public class Player_Movement : MonoBehaviour
                             //        Destroy(t.gameObject);
                             //    }
                             //}
-                            bool del = false;
-                            int i =0;
-                            while (!del)
-                            {
-
-                                if (selectedIngredient != baseItems[i])
-                                {
-                                    del = true;
-                                }
-                            }
-
-                            if (del)
+                            if(!(baseItems.Contains(selectedIngredient)))
                             {
                                 Destroy(hitObj.gameObject);
                             }
+                            
                         }
 
 
