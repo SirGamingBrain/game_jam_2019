@@ -27,7 +27,7 @@ public class Player_Movement : MonoBehaviour
     float rotateY;
     float rotateX;
     float minY = -90.0f, maxY = 90.0f;
-    float sensitivity = 1f;
+    float sensitivity = 3f;
     float dist;
 
 
@@ -113,7 +113,7 @@ public class Player_Movement : MonoBehaviour
         {
             dist = Vector3.Distance(this.transform.position, interactions[i].transform.position);
             //Debug.Log(dist);
-            if (dist <= 3.5f)
+            if (dist <= 5f)
             {
 
                 if (Input.GetKeyDown(KeyCode.E))
