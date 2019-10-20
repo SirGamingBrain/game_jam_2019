@@ -19,7 +19,7 @@ public class KitchenTools : MonoBehaviour
     Transform rHand;
 
     GameObject player;
-
+   
     [SerializeField]
     GameObject clone2;
     GameObject temp_Item;
@@ -56,8 +56,15 @@ public class KitchenTools : MonoBehaviour
         player = GameObject.Find("Temp Player");
         lHand = player.GetComponentInChildren(typeof(Transform)) as Transform;
         rHand = player.GetComponentInChildren(typeof(Transform)) as Transform;
+        object [] sublist = Resources.LoadAll("Our Prefabs", typeof(GameObject));
+        foreach (GameObject sub in sublist)
+        {
+            GameObject i = (GameObject)sub;
+            Proccessed.Add(i);
+            //Debug.Log(i.name);
+        }
 
-
+       
     }
 
     // Update is called once per frame
@@ -428,29 +435,34 @@ public class KitchenTools : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= 5f)
             {
-                Debug.Log("Smooth Horn");
+                Debug.Log("Draconic Dust");
                 GrindingItems.Remove(ObjectsName);
-                GrindedItems.Add("Smooth Horn");
+                GrindedItems.Add("Draconic Dust");
                 timer = 0;
-                Debug.Log(timer);
+               
               
                 if (GrindedItems.Count == 1)
                 {
-                    clone2 = Instantiate(SmoothHorn.gameObject, GrinderSpawn.transform.position, SmoothHorn.transform.rotation);
+                    Debug.Log("Hey");
+                    foreach (GameObject t in Proccessed)
+                    {
+                      
+                        foreach (string j in GrindedItems)
+                        {
+                            
+                            if (t.name == j)
+                            {
+                                clone2 = Instantiate(t.gameObject, GrinderSpawn.transform.position, t.transform.rotation);
+                                Debug.Log("Im here");
+                            }
+                        }
+                      
+                    }
+
                     
-                    //clone.transform.parent = leftHand.transform;
+
+
                 }
-
-                //if (lHand.transform.childCount > 0)
-                //{
-                //    Destroy(GameObject.Find("Smooth Horn(Clone)"),5f);
-                //}
-                //if (GrindedItems.Count > 1)
-                //{
-                //    GrindedItems.RemoveAt(0);
-                //    Debug.Log(GrindedItems);
-                //}
-
 
             }
            
@@ -559,9 +571,9 @@ public class KitchenTools : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= 2f)
             {
-                Debug.Log("Rage of the Dragon");
+                Debug.Log("Smooth Horn");
                 ExtractorItems.Remove(ObjectsName);
-                ExtractedItems.Add("Rage of the Dragon");
+                ExtractedItems.Add("Smooth Horn");
                 timer = 0;
             }
            
@@ -683,9 +695,9 @@ public class KitchenTools : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= 5f)
             {
-                Debug.Log("Draconic Dust");
+                Debug.Log("Rage of the Dragon");
                 FurnaceItems.Remove(ObjectsName);
-                BakedItems.Add("Draconic Dust");
+                BakedItems.Add("Rage of the Dragon");
                 timer = 0;
             }
            

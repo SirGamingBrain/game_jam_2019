@@ -10,6 +10,8 @@ public class Player_Movement : MonoBehaviour
     public GameObject rightHand;
     public GameObject[] interactions = new GameObject[0];
 
+    string[] baseItems = new string[10] { "Dragon Horn", "Cyclops Eye", "Undead Soul", "Dark Matter", "Volcanic Ore", "Blood Rose", "Blackeyed Gold", "Blooming Moon", "Snake", "Magic Mushroom" };
+
 
     public Camera FPV_Camera;
 
@@ -17,6 +19,7 @@ public class Player_Movement : MonoBehaviour
 
     public float speed;
 
+    List<GameObject> Checker = new List<GameObject>();
    
     GameObject clone;
     // string selectionName;
@@ -39,8 +42,14 @@ public class Player_Movement : MonoBehaviour
        // selectionName = gameObject.GetComponent<GameObject>().name;
         interactions = GameObject.FindGameObjectsWithTag("Interactable");
         Cursor.lockState = CursorLockMode.Locked;
+        object[] sublist = Resources.LoadAll("Our Prefabs", typeof(GameObject));
+        foreach (GameObject sub in sublist)
+        {
+            GameObject i = (GameObject)sub;
+            Checker.Add(i);
+            //Debug.Log(i.name);
+        }
 
-       
     }
 
     // Update is called once per frame
@@ -120,16 +129,36 @@ public class Player_Movement : MonoBehaviour
             {
                 if (selectedIngredient != null)
                 {
-                    Debug.Log(selectedIngredient);
+                   // Debug.Log(selectedIngredient);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         if (leftHand.transform.childCount == 0)
                         {
                             clone = Instantiate(hitObj.gameObject, leftHand.transform.position, hitObj.transform.rotation);
                             clone.transform.parent = leftHand.transform;
-                            GameObject temp_shit = GameObject.Find("Smooth Horn(Clone)");
-                            KitchenTools tools = temp_shit.GetComponent<KitchenTools>();
-                            Destroy(temp_shit);
+                            //GameObject temp_shit = GameObject.find;
+                            //foreach (GameObject t in Checker)
+                            //{
+                            //    if (t.name == selectedIngredient)
+                            //    {
+                            //        Destroy(t.gameObject);
+                            //    }
+                            //}
+                            bool del = false;
+                            int i =0;
+                            while (!del)
+                            {
+
+                                if (selectedIngredient != baseItems[i])
+                                {
+                                    del = true;
+                                }
+                            }
+
+                            if (del)
+                            {
+                                Destroy(hitObj.gameObject);
+                            }
                         }
 
 
