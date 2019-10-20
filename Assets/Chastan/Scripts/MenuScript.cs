@@ -9,6 +9,9 @@ public class MenuScript : MonoBehaviour
 {
     GameObject titlePage;
     GameObject settingsPage;
+    GameObject fade;
+
+    CanvasGroup fadeAlpha;
 
     Slider volumeBar;
 
@@ -26,20 +29,17 @@ public class MenuScript : MonoBehaviour
     readonly int[] heights = new int[5]{360, 576, 720, 1080, 1440};
 
     string[] names;
+    string scene = "NULL";
 
     int qualityIndex = 0;
     int maxQualityIndex = 0;
-    int index = 0;
     int currentIndex = 0;
     readonly int maxIndex = 4;
 
     float timer = 0f;
+    float fadeTimer = 3f;
 
-    //Awake is called on script instantiation.
-    private void Awake()
-    {
-        
-    }
+    bool loadScene = false;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +60,9 @@ public class MenuScript : MonoBehaviour
 
         titlePage = GameObject.Find("Title Page");
         settingsPage = GameObject.Find("Settings Page");
+        fade = GameObject.Find("Fade");
+
+        fadeAlpha = fade.GetComponent<CanvasGroup>();
 
         volume = GameObject.Find("Volume Value").GetComponent<TextMeshProUGUI>();
         resolution = GameObject.Find("Resolution").GetComponent<TextMeshProUGUI>();
@@ -106,18 +109,10 @@ public class MenuScript : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("Resolution"))
         {
-            foreach (int Object in heights)
-            {
-                index++;
-
-                if (Object == 720)
-                {
-                    currentIndex = index;
-                    Screen.SetResolution(widths[currentIndex], heights[currentIndex], Screen.fullScreen);
-                    PlayerPrefs.SetInt("Resolution", currentIndex);
-                    resolution.text = (widths[currentIndex].ToString() + " x " + heights[currentIndex].ToString());
-                }
-            }
+            currentIndex = 3 - 1;
+            Screen.SetResolution(widths[currentIndex], heights[currentIndex], Screen.fullScreen);
+            PlayerPrefs.SetInt("Resolution", currentIndex);
+            resolution.text = (widths[currentIndex].ToString() + " x " + heights[currentIndex].ToString());
         }
         else
         {
@@ -144,7 +139,6 @@ public class MenuScript : MonoBehaviour
                 }
             }
 
-            //Debug.Log(qualityIndex - 1);
             QualitySettings.SetQualityLevel(qualityIndex - 1);
             quality.text = names[qualityIndex - 1].ToUpper();
         }
@@ -153,11 +147,12 @@ public class MenuScript : MonoBehaviour
 
         titlePage.SetActive(true);
         settingsPage.SetActive(false);
-        //confirmationPage.SetActive(false);
+        fadeAlpha.alpha = 0f;
+        fade.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Resolution[] resolutions = Screen.resolutions;
 
@@ -168,26 +163,61 @@ public class MenuScript : MonoBehaviour
             Debug.Log("Volume: " +  volumeBar.value + ", Fullscreen: " + PlayerPrefs.GetInt("Fullscreen") + ", Resolution: " + widths[currentIndex].ToString() + " x " + heights[currentIndex].ToString() + ", Quality: " + PlayerPrefs.GetString("Quality") + ".");
             timer = 0f;
         }
+
+        if (loadScene)
+        {
+            fadeTimer -= Time.deltaTime;
+
+            fadeAlpha.alpha = 1f - (fadeTimer / 3);
+
+            AudioSource[] sources = FindObjectsOfType<AudioSource>();
+
+            foreach (AudioSource source in sources)
+            {
+                if (source.volume > 0f)
+                {
+                    source.volume -= Time.deltaTime;
+                }
+                else
+                {
+                    source.volume = 0f;
+                }
+            }
+
+            if (fadeTimer <= 0f)
+            {
+                fadeAlpha.alpha = 1f;
+                SceneManager.LoadSceneAsync(scene);
+            }
+        }
     }
 
     public void StartOnePlayer()
     {
-
+        fade.SetActive(true);
+        scene = "Singleplayer";
+        loadScene = true;
     }
 
     public void StartTwoPlayer()
     {
-
+        fade.SetActive(true);
+        scene = "Multiplayer";
+        loadScene = true;
     }
 
     public void ContinueOnePlayer()
     {
-
+        fade.SetActive(true);
+        scene = "Singeplayer";
+        loadScene = true;
     }
 
     public void ContinueTwoPlayer()
     {
-
+        fade.SetActive(true);
+        scene = "Multiplayer";
+        loadScene = true;
     }
 
     public void Settings()
