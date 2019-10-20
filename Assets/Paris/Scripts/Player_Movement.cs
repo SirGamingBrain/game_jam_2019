@@ -127,6 +127,9 @@ public class Player_Movement : MonoBehaviour
                         {
                             clone = Instantiate(hitObj.gameObject, leftHand.transform.position, hitObj.transform.rotation);
                             clone.transform.parent = leftHand.transform;
+                            GameObject temp_shit = GameObject.Find("Smooth Horn(Clone)");
+                            KitchenTools tools = temp_shit.GetComponent<KitchenTools>();
+                            Destroy(temp_shit);
                         }
 
 

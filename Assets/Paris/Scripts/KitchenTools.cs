@@ -8,15 +8,23 @@ public class KitchenTools : MonoBehaviour
     public GameObject Mixer;
     public GameObject Extractor;
     public GameObject Oven;
+    public GameObject SmoothHorn;
 
     public Transform OvenSpawn;
     public Transform ExtractorSpawn;
     public Transform GrinderSpawn;
     public Transform PotionSpawn;
 
+    Transform lHand;
+    Transform rHand;
+
     GameObject player;
-    GameObject clone;
+
+    [SerializeField]
+    GameObject clone2;
     GameObject temp_Item;
+
+    public List<GameObject> Proccessed = new List<GameObject>();
 
     List<string> GrindedItems = new List<string>();
     List<string> BakedItems = new List<string>();
@@ -46,8 +54,8 @@ public class KitchenTools : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Temp Player");
-        Transform lHand = player.GetComponentInChildren(typeof(Transform)) as Transform;
-        Transform rHand = player.GetComponentInChildren(typeof(Transform)) as Transform;
+        lHand = player.GetComponentInChildren(typeof(Transform)) as Transform;
+        rHand = player.GetComponentInChildren(typeof(Transform)) as Transform;
 
 
     }
@@ -425,12 +433,23 @@ public class KitchenTools : MonoBehaviour
                 GrindedItems.Add("Smooth Horn");
                 timer = 0;
                 Debug.Log(timer);
-               // temp_Item.name = GrindedItems[0];
+              
                 if (GrindedItems.Count == 1)
                 {
-                    clone = Instantiate(temp_Item.gameObject, GrinderSpawn.transform.position, temp_Item.transform.rotation);
+                    clone2 = Instantiate(SmoothHorn.gameObject, GrinderSpawn.transform.position, SmoothHorn.transform.rotation);
+                    
                     //clone.transform.parent = leftHand.transform;
                 }
+
+                //if (lHand.transform.childCount > 0)
+                //{
+                //    Destroy(GameObject.Find("Smooth Horn(Clone)"),5f);
+                //}
+                //if (GrindedItems.Count > 1)
+                //{
+                //    GrindedItems.RemoveAt(0);
+                //    Debug.Log(GrindedItems);
+                //}
 
 
             }
