@@ -25,7 +25,10 @@ public class KitchenTools : MonoBehaviour
     string ObjectsName;
 
     int num;
-   
+    int sum;
+    int sum2;
+    int sum3;
+    int sum4;
     int itemValue;
 
 
@@ -171,12 +174,10 @@ public class KitchenTools : MonoBehaviour
     {
         if (CauldronItems.Count != 0)
         {
-            int num1 = 0;
-            int num2 = 0;
-            int sum = 0;
-            List<int> hey = new List<int>();
-            Dictionary<string, int>.ValueCollection mixes = CauldronItems.Values;
-            foreach (int mixture in mixes)
+
+            List<string> hey = new List<string>();
+            Dictionary<string, int>.KeyCollection mixes = CauldronItems.Keys;
+            foreach (string mixture in mixes)
             {
                 Debug.Log(mixture);
                 hey.Add(mixture);
@@ -184,22 +185,169 @@ public class KitchenTools : MonoBehaviour
 
             }
 
-            foreach (int i in hey)
+            foreach (string i in hey)
             {
                 Debug.Log(i);
             }
 
-            hey[1] = num1;
-            hey[2] = num2;
-            sum = num1 + num2;
-            Debug.Log(sum);
+            //sum += hey[0];
+            //sum += hey[1];
+
+            //Debug.Log(sum);
         }
+
+        else if (MixerItems.Count != 0)
+        {
+            List<string> hey = new List<string>();
+            Dictionary<string, int>.KeyCollection mixes = CauldronItems.Keys;
+            foreach (string mixture in mixes)
+            {
+                Debug.Log(mixture);
+                hey.Add(mixture);
+
+
+            }
+
+            foreach (string i in hey)
+            {
+                Debug.Log(i);
+            }
+
+            
+        }
+
+        else if (ExtractorItems.Count != 0)
+        {
+            List<string> hey = new List<string>();
+            Dictionary<string, int>.KeyCollection mixes = CauldronItems.Keys;
+            foreach (string mixture in mixes)
+            {
+                Debug.Log(mixture);
+                hey.Add(mixture);
+
+
+            }
+
+            foreach (string i in hey)
+            {
+                Debug.Log(i);
+            }
+
+            
+        }
+        else if (OvenItems.Count != 0)
+        {
+            List<string> hey = new List<string>();
+            Dictionary<string, int>.KeyCollection mixes = CauldronItems.Keys;
+            foreach (string mixture in mixes)
+            {
+                Debug.Log(mixture);
+                hey.Add(mixture);
+
+
+            }
+
+            foreach (string i in hey)
+            {
+                Debug.Log(i);
+            }
+
+           
+        }
+
+
 
         else
         {
             Debug.Log("we empty dog");
         }
-       
+
+        if (CauldronItems.ContainsKey("Pick up 1(Clone)") && CauldronItems.ContainsKey("Pick up 2(Clone)") && CauldronItems.ContainsKey("Pick up 3(Clone)"))
+        {
+            Debug.Log("Music");
+            CauldronItems.Remove(ObjectsName);
+
+        }
+
+        if (CauldronItems.ContainsKey("Pick up 1(Clone)") && CauldronItems.ContainsKey("Pick up 2(Clone)") && CauldronItems.ContainsKey("Pick up 4(Clone)"))
+        {
+            Debug.Log("Eyes");
+            CauldronItems.Remove(ObjectsName);
+        }
+        if (CauldronItems.ContainsKey("Pick up 1(Clone)") && CauldronItems.ContainsKey("Pick up 3(Clone)") && CauldronItems.ContainsKey("Pick up 4(Clone)"))
+        {
+            Debug.Log("Tails");
+            CauldronItems.Remove(ObjectsName);
+        }
+        if (CauldronItems.ContainsKey("Pick up 2(Clone)") && CauldronItems.ContainsKey("Pick up 3(Clone)") && CauldronItems.ContainsKey("Pick up 4(Clone)"))
+        {
+            Debug.Log("Coke");
+            CauldronItems.Remove(ObjectsName);
+        }
+
+        if (MixerItems.ContainsKey("Pick up 1(Clone)"))
+        {
+            Debug.Log("mixed pick up 1");
+            MixerItems.Remove(ObjectsName);
+        }
+        if (MixerItems.ContainsKey("Pick up 2(Clone)"))
+        {
+            Debug.Log("mixed pick up 2");
+            MixerItems.Remove(ObjectsName);
+        }
+        if (MixerItems.ContainsKey("Pick up 3(Clone)"))
+        {
+            Debug.Log("mixed pick up 3");
+            MixerItems.Remove(ObjectsName);
+        }
+        if (MixerItems.ContainsKey("Pick up 4(Clone)"))
+        {
+            Debug.Log("mixed pick up 4");
+            MixerItems.Remove(ObjectsName);
+        }
+
+        if (ExtractorItems.ContainsKey("Pick up 1(Clone)"))
+        {
+            Debug.Log("Extracted pick up 1");
+            ExtractorItems.Remove(ObjectsName);
+        }
+        if (ExtractorItems.ContainsKey("Pick up 2(Clone)"))
+        {
+            Debug.Log("Extracted pick up 2");
+            ExtractorItems.Remove(ObjectsName);
+        }
+        if (ExtractorItems.ContainsKey("Pick up 3(Clone)"))
+        {
+            Debug.Log("Extracted pick up 3");
+            ExtractorItems.Remove(ObjectsName);
+        }
+        if (ExtractorItems.ContainsKey("Pick up 4(Clone)"))
+        {
+            Debug.Log("Extracted pick up 4");
+            ExtractorItems.Remove(ObjectsName);
+        }
+
+        if (OvenItems.ContainsKey("Pick up 1(Clone)"))
+        {
+            Debug.Log("Baked pick up 1");
+            OvenItems.Remove(ObjectsName);
+        }
+        if (OvenItems.ContainsKey("Pick up 2(Clone)"))
+        {
+            Debug.Log("Baked pick up 2");
+            OvenItems.Remove(ObjectsName);
+        }
+        if (OvenItems.ContainsKey("Pick up 3(Clone)"))
+        {
+            Debug.Log("Baked pick up 3");
+            OvenItems.Remove(ObjectsName);
+        }
+        if (OvenItems.ContainsKey("Pick up 4(Clone)"))
+        {
+            Debug.Log("Baked pick up 4");
+            OvenItems.Remove(ObjectsName);
+        }
+
     }
 
     void testing()
@@ -214,10 +362,15 @@ public class KitchenTools : MonoBehaviour
         foreach (int j in dumb)
         {
             Debug.Log(j);
-            sum += dumb[j];
+           
             
         }
+        sum += dumb[0];
+        sum += dumb[1];
+        sum += dumb[2];
         Debug.Log(dumb.Count);
         Debug.Log(sum);
     }
+
+    
 }
