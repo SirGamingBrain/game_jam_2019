@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2096029787538100991}
   - component: {fileID: 8922255494256309932}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Strength Template(Clone) Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

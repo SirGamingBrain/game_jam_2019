@@ -43,7 +43,7 @@ public class PlayerUIScript : MonoBehaviour
     int strikes = 0;
 
     float fadeTimer = 3f;
-    float levelTimer = 0f;
+    public float levelTimer = 0f;
 
     bool startLevel = false;
     bool loadScene = false;
