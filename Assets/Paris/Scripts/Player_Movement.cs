@@ -22,7 +22,8 @@ public class Player_Movement : MonoBehaviour
     // string selectionName;
 
      //[SerializeField]
-     public string selectionName;
+    public string selectionName;
+    public string selectedIngredient;
 
     float rotateY;
     float rotateX;
@@ -109,34 +110,71 @@ public class Player_Movement : MonoBehaviour
 
     void Interactions()
     {
-        for(int i = 0; i < interactions.Length; i++)
+        //for(int i = 0; i < interactions.Length; i++)
+        //{
+        //    dist = Vector3.Distance(this.transform.position, interactions[i].transform.position);
+        //    //Debug.Log(dist);
+        //    if (dist <= 1.75f)
+        //    {
+
+        //        if (Input.GetKeyDown(KeyCode.E))
+        //        {
+        //            if (leftHand.transform.childCount == 0 )
+        //            {
+        //                clone = Instantiate(interactions[i], leftHand.transform.position, interactions[i].transform.rotation);
+        //                clone.transform.parent = leftHand.transform;
+        //            }
+
+
+        //            else if (leftHand.transform.childCount > 0 && rightHand.transform.childCount == 0 )
+        //            {
+        //                clone = Instantiate(interactions[i], rightHand.transform.position, interactions[i].transform.rotation);
+        //                clone.transform.parent = rightHand.transform;
+        //            }
+
+        //            if (leftHand.transform.childCount == 1 && rightHand.transform.childCount == 1)
+        //            {
+        //                Debug.Log("Hands are full fam!");
+        //            }
+
+        //        }
+        //    }
+        //}
+
+        var ray = FPV_Camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 2f))
         {
-            dist = Vector3.Distance(this.transform.position, interactions[i].transform.position);
-            //Debug.Log(dist);
-            if (dist <= 1.5f)
+            var hitObj = hit.transform;
+            selectedIngredient = hitObj.gameObject.name;
+            if (hitObj.CompareTag("Interactable"))
             {
-
-                if (Input.GetKeyDown(KeyCode.E))
+                if (selectedIngredient != null)
                 {
-                    if (leftHand.transform.childCount == 0 )
+                    Debug.Log(selectedIngredient);
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
-                        clone = Instantiate(interactions[i], leftHand.transform.position, interactions[i].transform.rotation);
-                        clone.transform.parent = leftHand.transform;
+                        if (leftHand.transform.childCount == 0)
+                        {
+                            clone = Instantiate(hitObj.gameObject, leftHand.transform.position, hitObj.transform.rotation);
+                            clone.transform.parent = leftHand.transform;
+                        }
+
+
+                        else if (leftHand.transform.childCount > 0 && rightHand.transform.childCount == 0)
+                        {
+                            clone = Instantiate(hitObj.gameObject, rightHand.transform.position, hitObj.transform.rotation);
+                            clone.transform.parent = rightHand.transform;
+                        }
+
+                        if (leftHand.transform.childCount == 1 && rightHand.transform.childCount == 1)
+                        {
+                            Debug.Log("Hands are full fam!");
+                        }
                     }
-
-
-                    else if (leftHand.transform.childCount > 0 && rightHand.transform.childCount == 0 )
-                    {
-                        clone = Instantiate(interactions[i], rightHand.transform.position, interactions[i].transform.rotation);
-                        clone.transform.parent = rightHand.transform;
-                    }
-
-                    if (leftHand.transform.childCount == 1 && rightHand.transform.childCount == 1)
-                    {
-                        Debug.Log("Hands are full fam!");
-                    }
-
                 }
+
+
             }
         }
 

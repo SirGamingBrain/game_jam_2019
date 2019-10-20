@@ -56,10 +56,6 @@ public class KitchenTools : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            testing();
-        }
     }
 
 
@@ -254,9 +250,6 @@ public class KitchenTools : MonoBehaviour
 
            
         }
-
-
-
         else
         {
             Debug.Log("we empty dog");
@@ -349,7 +342,7 @@ public class KitchenTools : MonoBehaviour
         }
         if (GrindingItems.ContainsKey("Cyclops Eye(Clone)"))
         {
-            Debug.Log("Iris Extract");
+            Debug.Log("Cyclops Tears");
             GrindingItems.Remove(ObjectsName);
         }
         if (GrindingItems.ContainsKey("Undead Soul(Clone)"))
@@ -395,75 +388,133 @@ public class KitchenTools : MonoBehaviour
         //Grinding Ends
 
         //Extraction Section
-        if (ExtractorItems.ContainsKey("Pick up 1(Clone)"))
+        if (ExtractorItems.ContainsKey("Dragon Horn(Clone)"))
         {
-            Debug.Log("Extracted pick up 1");
+            Debug.Log("Rage of the Dragon");
             ExtractorItems.Remove(ObjectsName);
         }
-        if (ExtractorItems.ContainsKey("Pick up 2(Clone)"))
+        if (ExtractorItems.ContainsKey("Cyclops Eye(Clone)"))
         {
-            Debug.Log("Extracted pick up 2");
+            Debug.Log("Iris Extract");
             ExtractorItems.Remove(ObjectsName);
         }
-        if (ExtractorItems.ContainsKey("Pick up 3(Clone)"))
+        if (ExtractorItems.ContainsKey("Undead Soul(Clone)"))
         {
-            Debug.Log("Extracted pick up 3");
+            Debug.Log("Light Spirit");
             ExtractorItems.Remove(ObjectsName);
         }
-        if (ExtractorItems.ContainsKey("Pick up 4(Clone)"))
+        if (ExtractorItems.ContainsKey("Blood Rose(Clone)"))
         {
-            Debug.Log("Extracted pick up 4");
+            Debug.Log("Blood Seeds");
+            ExtractorItems.Remove(ObjectsName);
+        }
+        if (ExtractorItems.ContainsKey("Blackeyed Gold(Clone)"))
+        {
+            Debug.Log("Gold Seeds");
+            ExtractorItems.Remove(ObjectsName);
+        }
+        if (ExtractorItems.ContainsKey("Blooming Moon(Clone)"))
+        {
+            Debug.Log("Moon Seeds");
+            ExtractorItems.Remove(ObjectsName);
+        }
+        if (ExtractorItems.ContainsKey("Dark Matter(Clone)"))
+        {
+            Debug.Log("Nova Core");
+            ExtractorItems.Remove(ObjectsName);
+        }
+        if (ExtractorItems.ContainsKey("Volcanic Core(Clone)"))
+        {
+            Debug.Log("External Flame");
+            ExtractorItems.Remove(ObjectsName);
+        }
+        if (ExtractorItems.ContainsKey("Snake(Clone)"))
+        {
+            Debug.Log("Venom");
+            ExtractorItems.Remove(ObjectsName);
+        }
+        if (ExtractorItems.ContainsKey("Magic Mushrooms(Clone)"))
+        {
+            Debug.Log("Fungus");
             ExtractorItems.Remove(ObjectsName);
         }
         //Extraction Ends
 
 
         //Baking Section
-        if (FurnaceItems.ContainsKey("Pick up 1(Clone)"))
+        if (FurnaceItems.ContainsKey("Dragon Horn(Clone)"))
         {
-            Debug.Log("Baked pick up 1");
+            Debug.Log("Draconic Dust");
             FurnaceItems.Remove(ObjectsName);
         }
-        if (FurnaceItems.ContainsKey("Pick up 2(Clone)"))
+        if (FurnaceItems.ContainsKey("Cyclops Eye(Clone)"))
         {
-            Debug.Log("Baked pick up 2");
+            Debug.Log("Crystal Eye");
             FurnaceItems.Remove(ObjectsName);
         }
-        if (FurnaceItems.ContainsKey("Pick up 3(Clone)"))
+        if (FurnaceItems.ContainsKey("Undead Soul(Clone)"))
         {
-            Debug.Log("Baked pick up 3");
+            Debug.Log("Dark Spirit");
             FurnaceItems.Remove(ObjectsName);
         }
-        if (FurnaceItems.ContainsKey("Pick up 4(Clone)"))
+        if (FurnaceItems.ContainsKey("Blood Rose(Clone)"))
         {
-            Debug.Log("Baked pick up 4");
+            Debug.Log("Blood Rose Sugar");
+            FurnaceItems.Remove(ObjectsName);
+        }
+        if (FurnaceItems.ContainsKey("Blackeyed Gold(Clone)"))
+        {
+            Debug.Log("Blackeye Sugar");
+            FurnaceItems.Remove(ObjectsName);
+        }
+        if (FurnaceItems.ContainsKey("Blooming Moon(Clone)"))
+        {
+            Debug.Log("Moon Sugar");
+            FurnaceItems.Remove(ObjectsName);
+        }
+        if (FurnaceItems.ContainsKey("Dark Matter(Clone)"))
+        {
+            Debug.Log("Mini Star");
+            FurnaceItems.Remove(ObjectsName);
+        }
+        if (FurnaceItems.ContainsKey("Volcanic Ore(Clone)"))
+        {
+            Debug.Log("Power Stone");
+            FurnaceItems.Remove(ObjectsName);
+        }
+        if (FurnaceItems.ContainsKey("Snake(Clone)"))
+        {
+            Debug.Log("What's wrong with you.. you can't bake a snake!");
+            FurnaceItems.Remove(ObjectsName);
+        }
+        if (FurnaceItems.ContainsKey("Magic Mushrooms(Clone)"))
+        {
+            Debug.Log("Goo");
             FurnaceItems.Remove(ObjectsName);
         }
         //Baking Ends
 
     }
 
-    void testing()
-    {
-        int num1 = 0;
-        int num2 = 0;
-        int sum = 0;
-        List<int> dumb = new List<int>();
-        dumb.Add(1);
-        dumb.Add(3);
-        dumb.Add(10);
-        foreach (int j in dumb)
-        {
-            Debug.Log(j);
+    //void testing()
+    //{
+    //    int num1 = 0;
+    //    int num2 = 0;
+    //    int sum = 0;
+    //    List<int> dumb = new List<int>();
+    //    dumb.Add(1);
+    //    dumb.Add(3);
+    //    dumb.Add(10);
+    //    foreach (int j in dumb)
+    //    {
+    //        Debug.Log(j);
            
-            
-        }
-        sum += dumb[0];
-        sum += dumb[1];
-        sum += dumb[2];
-        Debug.Log(dumb.Count);
-        Debug.Log(sum);
-    }
-
-    
+    //    }
+    //    sum += dumb[0];
+    //    sum += dumb[1];
+    //    sum += dumb[2];
+    //    Debug.Log(dumb.Count);
+    //    Debug.Log(sum);
+    //}
+   
 }
