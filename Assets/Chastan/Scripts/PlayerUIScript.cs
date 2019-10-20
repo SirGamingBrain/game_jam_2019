@@ -188,10 +188,11 @@ public class PlayerUIScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && (!fadeDay && !startLevel))
+        if (Input.GetKeyDown(KeyCode.L) )
         {
             Settings();
-            Debug.Log("we alive");
+            Cursor.lockState = CursorLockMode.None;
+            //(!fadeDay && !startLevel)
         }
 
         if (startLevel)
@@ -394,6 +395,7 @@ public class PlayerUIScript : MonoBehaviour
         PlayerPrefs.Save();
         Time.timeScale = 1f;
         settingsPage.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void OnClick()

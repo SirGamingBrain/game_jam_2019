@@ -47,6 +47,11 @@ public class Player_Movement : MonoBehaviour
     {
         Movement();
         Interactions();
+
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    Cursor.lockState = CursorLockMode.None;
+        //}
        
         
     }
