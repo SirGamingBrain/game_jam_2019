@@ -44,6 +44,7 @@ public class MenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         GUISounds = GameObject.Find("GUI Sounds").GetComponent<AudioSource>();
         BackgroundMusic = GetComponent<AudioSource>();
         Fire = GameObject.Find("CampFire").GetComponent<AudioSource>();

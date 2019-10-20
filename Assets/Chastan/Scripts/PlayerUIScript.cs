@@ -188,9 +188,10 @@ public class PlayerUIScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && (fadeDay && fadeAlpha))
+        if (Input.GetKeyDown(KeyCode.Escape) && (!fadeDay && !startLevel))
         {
             Settings();
+            Debug.Log("we alive");
         }
 
         if (startLevel)
